@@ -13,6 +13,12 @@ body {
     border: 0;
 }
 
+.clickable {
+    -webkit-tap-highlight-color: transparent; /* For Safari, older versions of Chrome, and some mobile browsers */
+    -webkit-touch-callout: none; /* Disable the touch callout (context menu) on some mobile browsers */
+    touch-action: manipulation; /* Improve touch responsiveness and prevent double-tap zoom on some mobile browsers */
+}
+
 .container {
     margin: 0;
     left: 0;
