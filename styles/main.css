@@ -1,0 +1,254 @@
+:root {
+    --header-color: white;
+    --body-color: white;
+    --footer-color: white;
+    --on-hover-color: beige;
+    --menu-color: #a9adb1;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.container {
+    margin: 0;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: var(--header-color);
+    display: flex;
+}
+
+.body {
+    max-height: calc(100% - 50px + 50px);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    overflow-y: auto;
+    background-color: var(--body-color);
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    justify-content: center;
+    max-height: 100%;
+    display: flex;
+    flex-grow: 1;
+    overflow: inherit;
+    margin-left: 0;
+    padding: 0;
+}
+
+.footer {
+    height: 50px;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--footer-color);
+}
+
+.header-back-button {
+    visibility: collapse;
+    position: relative;
+    width: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header-back-button.active {
+    visibility: visible;
+}
+
+.back-arrow-top {
+    position: relative;
+    transform: rotate(-45deg);
+    background-color: black;
+    width: 25px;
+    height: 4px;
+    border-radius: 4px;
+    top: -6px;
+    left: -2px;
+}
+
+.back-arrow-bottom {
+    position: relative;
+    background-color: black;
+    width: 25px;
+    height: 4px;
+    transform: rotate(45deg);
+    top: 6px;
+    border-radius: 4px;
+    left: -2px;
+}
+
+.header-main {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.header-main-logo-eco-kirchner {
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header-main-logo-aulivera {
+    display: none;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header-menu-button {
+    position: relative;
+    width: 50px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header-menu-button-line {
+    height: 4px;
+    width: calc(100% - 4px);
+    border-radius: 4px;
+    background-color: black;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    transform-origin: left center;
+}
+
+.open>.header-menu-button-line:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.open>.header-menu-button-line:nth-child(2) {
+    width: 0;
+    opacity: 0;
+}
+
+.open>.header-menu-button-line:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.header-menu-large {
+    display: none;
+}
+
+.menu-item {
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-item:hover {
+    background-color: var(--on-hover-color);
+}
+
+.menu {
+    transition: height 0.25s ease;
+    width: 100%;
+    height: 0;
+    top: 50px;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--menu-color);
+}
+
+.menu>.menu-item {
+    transition: font-size 0.25s ease-in-out;
+    height: 0;
+    display: flex;
+    font-size: 1px;
+    visibility: collapse;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu>.menu-item:hover {
+    background-color: var(--on-hover-color);
+}
+
+.menu.open>.menu-item {
+    height: 84px;
+    font-size: 34px;
+    visibility: visible;
+}
+
+.menu>.menu-item-separator {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.menu.open {
+    height: calc(100% - 50px - 50px);
+}
+
+@media (min-width: 600px) {
+    .header-main-logo-aulivera {
+        display: block;
+    }
+}
+
+@media (min-width: 980px) {
+    .menu {
+        display: none;
+        height: 0;
+    }
+
+    .header-menu-button {
+        display: none;
+    }
+
+    .header-menu-large {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.page {
+    display: flex;
+}
+
+.page.hidden {
+    display: none;
+}
