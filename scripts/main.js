@@ -1,7 +1,11 @@
 const pageManager = new PageManager();
+const clientService = new ClientService();
+const productManager = new ProductManager(clientService);
 
-document.addEventListener("DOMContentLoaded", () => { pageManager.initMenuEvents() });
-
+document.addEventListener("DOMContentLoaded", () => {
+    pageManager.initMenuEvents();
+    productManager.init()
+});
 
 function onProductsClicked() {
     pageManager.showProductPage();
