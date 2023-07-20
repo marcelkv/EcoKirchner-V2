@@ -31,6 +31,14 @@ class PageManager {
         return document.querySelector(".header-menu-button");
     }
 
+    get menuLarge() {
+        return document.querySelector(".header-menu-large");
+    }
+
+    get largeMenuItems() {
+        return this.menuLarge.querySelectorAll(".menu-item");
+    }
+
     get menu() {
         return document.querySelector(".menu");
     }
@@ -64,6 +72,9 @@ class PageManager {
         this.menuItems.forEach((menuItem, index) => {
             menuItem.addEventListener("click", () => this.onMenuItemClick(index))
         });
+        this.largeMenuItems.forEach((menuItem, index) => {
+            menuItem.addEventListener("click", () => this.onMenuItemClick(index))
+        })
         this.menuEventsInitialized = true;
     }
 
