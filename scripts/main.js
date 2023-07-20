@@ -8,15 +8,3 @@ document.addEventListener("DOMContentLoaded", () => {
     productManager.init()
     customerManager.init();
 });
-
-function onProductsClicked() {
-    pageManager.showProductPage();
-}
-
-function onCustomersClicked() {
-    pageManager.showCustomerPage();
-}
-
-function onOrdersClicked() {
-    pageManager.showOrderPage();
-}
