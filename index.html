@@ -8,9 +8,12 @@
     <title>Eco Kirchner</title>
     <link rel="icon" href="images/cropped-icon-32x32.png">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="styles/products.css">
+    <link rel="stylesheet" type="text/css" href="styles/list-items.css">
     <script src="models/product.js"></script>
+    <script src="models/customer.js"></script>
+    <script src="class-lists/list-items.js"></script>
     <script src="scripts/client-service.js"></script>
+    <script src="scripts/customer-manager.js"></script>
     <script src="scripts/product-manager.js"></script>
     <script src="scripts/page-manager.js"></script>
     <script src="scripts/main.js"></script>
@@ -53,12 +56,14 @@
         <div class="body">
             <div class="page main">Hi!</div>
             <div class="page products hidden">
-                <div class="products-list"></div>
+                <div class="list-items"></div>
             </div>
             <div class="page product hidden">One product</div>
-            <div class="page customers hidden" onclick="onCustomersClicked()">The customers</div>
+            <div class="page customers hidden">
+                <div class="list-items"></div>
+            </div>
             <div class="page customer hidden">One customer</div>
-            <div class="page orders hidden" onclick="onOrdersClicked()">The orders</div>
+            <div class="page orders hidden">The orders</div>
             <div class="page order hidden">One order</div>
         </div>
         <div class="footer">
