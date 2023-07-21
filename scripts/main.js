@@ -3,6 +3,8 @@ const fileManager = new FileManager();
 const clientService = new ClientService();
 const productManager = new ProductManager(clientService);
 const customerManager = new CustomerManager(clientService);
+const demoData = new DemoData();
+clientService.setAppData(demoData.appDataDto);
 
 pageManager.onLoadFileRequested = () => fileManager.selectFile();
 pageManager.onSaveFileRequested = () => clientService.onSaveAppDataRequested();
