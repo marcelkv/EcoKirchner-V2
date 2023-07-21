@@ -60,6 +60,8 @@ class PageManager {
         this.className_active = "active";
         this.className_open = "open";
         this.className_hidden = "hidden";
+        this.onSaveFileRequested = null;
+        this.onLoadFileRequested = null;
     }
 
     initMenuEvents() {
@@ -114,6 +116,14 @@ class PageManager {
         }
         else if (index === 2) {
             this.showOrdersPage();
+        }
+        else if (index === 3) {
+            this.hideMenu();
+            this.onSaveFileRequested();
+        }
+        else if (index === 4) {
+            this.hideMenu();
+            this.onLoadFileRequested();
         }
     }
 

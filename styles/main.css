@@ -73,6 +73,10 @@ body {
     background-color: var(--footer-color);
 }
 
+.file-selector {
+    display: none;
+}
+
 .header-back-button {
     visibility: collapse;
     position: relative;

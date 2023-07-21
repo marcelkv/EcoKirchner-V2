@@ -9,7 +9,7 @@ class CustomerManager {
     }
 
     init() {
-        this.clientService.customers.forEach((customer) => {
+        this.clientService.customerVms.forEach((customer) => {
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");
             const nameItem = document.createElement("div");

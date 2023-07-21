@@ -9,7 +9,7 @@ class ProductManager {
     }
 
     init() {
-        this.clientService.products.forEach((product) => {
+        this.clientService.productVms.forEach((product) => {
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");
             const secondaryItems = document.createElement("div");
@@ -59,19 +59,14 @@ class ProductManager {
             secondaryItems.classList.remove(this.classList.open);
         }
         else {
-            const ignoreItem = secondaryItems;
-            this.closeSecondaryItems(ignoreItem);
+            this.closeSecondaryItems();
             secondaryItems.classList.add(this.classList.open);
         }
     }
 
-    closeSecondaryItems(ignoreItem) {
+    closeSecondaryItems() {
         const queryClassName = this.classList.dot(this.classList.secondaryItems);
         const allSecondaryitems = this.productsList.querySelectorAll(queryClassName);
-        allSecondaryitems.forEach(item => {
-            if (item !== ignoreItem) {
-                item.classList.remove(this.classList.open);
-            }
-        })
+        allSecondaryitems.forEach(item => item.classList.remove(this.classList.open));
     }
 }
