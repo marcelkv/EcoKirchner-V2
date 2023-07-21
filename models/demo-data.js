@@ -34,7 +34,15 @@ class DemoData {
         return customers;
     }
 
+    get orderDtos() {
+        const productOrderDtos = [];
+        productOrderDtos.push(new ProductOrderDto("1", "1", 4));
+        productOrderDtos.push(new ProductOrderDto("2", "4", 2));
+        productOrderDtos.push(new ProductOrderDto("3", "7", 3));
+        return [new OrderDto("1", "6", productOrderDtos, false)];
+    }
+
     get appDataDto() {
-        return new AppDataDto(this.productDtos, this.customerDtos);
+        return new AppDataDto(this.productDtos, this.customerDtos, this.orderDtos);
     }
 }
