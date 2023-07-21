@@ -28,7 +28,7 @@ class FileManager {
         reader.onload = (event) => {
             try {
                 const jsonData = JSON.parse(event.target.result);
-                const appDataDto = new AppDataDto(jsonData.productDtos, jsonData.customerDtos);
+                const appDataDto = new AppDataDto(jsonData.productDtos, jsonData.customerDtos, jsonData.orderDtos);
                 this.onAppDataReady(appDataDto);
             } catch (error) {
                 alert('Error parsing JSON file: ' + error.message);

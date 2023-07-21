@@ -9,6 +9,11 @@ class CustomerManager {
     }
 
     init() {
+        if (!this.customersList) {
+            return;
+        }
+
+        this.customersList.innerHTML = "";
         this.clientService.customerVms.forEach((customer) => {
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");

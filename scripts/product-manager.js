@@ -9,6 +9,11 @@ class ProductManager {
     }
 
     init() {
+        if (!this.productsList) {
+            return;
+        }
+
+        this.productsList.innerHTML = "";
         this.clientService.productVms.forEach((product) => {
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");

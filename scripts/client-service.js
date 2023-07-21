@@ -17,6 +17,7 @@ class ClientService {
 
     constructor() {
         this.saveAppData = null;
+        this.updateData = null;
     }
 
     setAppData(appData) {
@@ -35,6 +36,7 @@ class ClientService {
         this.productVms = productVms;
         this.customerVms = customerVms;
         this.orderVms = orderVms;
+        this.updateData();
     }
 
     onSaveAppDataRequested() {
