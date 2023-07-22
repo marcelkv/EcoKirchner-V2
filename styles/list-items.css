@@ -1,3 +1,7 @@
+:root {
+    --indicator-size: 16px;
+}
+
 .list-items {
     display: flex;
     flex-direction: column;
@@ -22,6 +26,8 @@
 
 .primary-items {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .secondary-items {
@@ -34,6 +40,21 @@
 
 .secondary-items.open {
     display: flex;
+}
+
+.primary-item-indicator {
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    margin-left: 10px;
+    border-radius: var(--indicator-size);
+}
+
+.indicator-red {
+    background-color: red;
+}
+
+.indicator-green {
+    background-color: green;
 }
 
 .primary-item {

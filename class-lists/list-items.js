@@ -4,6 +4,9 @@ class ListItems {
     primaryItems = "primary-items";
     secondaryItems = "secondary-items";
     primaryItem = "primary-item";
+    primariyItemIndicator = "primary-item-indicator";
+    indicatorRed = "indicator-red";
+    indicatorGreen = "indicator-green";
     secondaryItemLabel = "secondary-item-label";
     secondaryItem = "secondary-item";
     open = "open";

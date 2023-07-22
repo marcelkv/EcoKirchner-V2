@@ -18,6 +18,7 @@ class ProductManager {
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");
             const secondaryItems = document.createElement("div");
+            const indicatorItem = document.createElement("div");
             const nameItem = document.createElement("div");
             const costItemLabel = document.createElement("div");
             const costItem = document.createElement("div");
@@ -28,6 +29,7 @@ class ProductManager {
 
             listItemWrapper.appendChild(primaryItems);
             listItemWrapper.appendChild(secondaryItems);
+            primaryItems.appendChild(indicatorItem);
             primaryItems.appendChild(nameItem);
             secondaryItems.appendChild(costItemLabel);
             secondaryItems.appendChild(costItem);
@@ -40,6 +42,13 @@ class ProductManager {
             listItemWrapper.className = this.classList.listItemWrapper;
             primaryItems.className = this.classList.primaryItems;
             secondaryItems.className = this.classList.secondaryItems;
+            indicatorItem.classList.add(this.classList.primariyItemIndicator);
+            if (product.availableItems > 0) {
+                indicatorItem.classList.add(this.classList.indicatorGreen);
+            }
+            else {
+                indicatorItem.classList.add(this.classList.indicatorRed);
+            }
             nameItem.className = this.classList.primaryItem;
             costItemLabel.className = this.classList.secondaryItemLabel;
             costItem.className = this.classList.secondaryItem;
