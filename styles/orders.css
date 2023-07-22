@@ -5,3 +5,82 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.order-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 550px;
+}
+
+.order-customer-name-section {
+    border: 1px solid black;
+    font-size: 24px;
+    padding: 5px;
+    width: 100%;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.order-customer-products {
+    width: 100%;
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.group {
+    display: flex;
+}
+
+.group-label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.group-item {}
+
+.products-table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    padding-left: 2px;
+    background-color: #f2f2f2;
+}
+
+th:nth-child(1) {
+    padding-right: 60px;
+}
+
+th:nth-child(2) {
+    padding-right: 28px;
+}
+
+th:nth-child(3) {
+    padding-right: 28px;
+}
+
+th:nth-child(4) {
+    padding-right: 28px;
+}
+
+tr:nth-child(0) {
+    padding-right: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #ebe2e2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.firstCol {
+    padding-right: 20px;
+}

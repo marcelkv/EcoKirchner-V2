@@ -3,6 +3,22 @@ class OrderManager {
         return document.querySelector(".orders > ." + this.classList.listItems);
     }
 
+    get orderCustomerNameSection() {
+        return document.querySelector(".order > .order-wrapper > .order-customer-name-section");
+    }
+
+
+    get orderCustomerProducts() {
+        return document.querySelector(".order > .order-wrapper > .order-customer-products");
+    }
+    get orderCustomerTable() {
+        return this.orderCustomerProducts.querySelector(".products-table");
+    }
+
+    get orderCustomerTotalCost() {
+        return this.orderCustomerProducts.querySelector(".group-item");
+    }
+
     get indicatorFilter() {
         return document.querySelector(".orders > .orders-bar > ." + this.classList.listItemIndicator);
     }
@@ -28,6 +44,7 @@ class OrderManager {
     constructor(clientService) {
         this.clientService = clientService;
         this.classList = new ListItems();
+        this.onOrderSelected = null;
     }
 
     init() {
@@ -107,7 +124,9 @@ class OrderManager {
             listItemWrapper.className = this.classList.listItemWrapper;
             primaryItems.className = this.classList.primaryItems;
             nameItem.className = this.classList.primaryItem;
-            nameItem.textContent = orderVm.customer.firstName + " " + orderVm.customer.lastName;
+            nameItem.textContent = orderVm.customerVm.firstName + " " + orderVm.customerVm.lastName;
+
+            primaryItems.onclick = () => this.onOrderClick(orderVm);
         });
     }
 
@@ -138,5 +157,40 @@ class OrderManager {
             (this.currentIndicatorState === "red" && this.isOrderNotDelivered(orderVm) && this.isOrderNotPayed(orderVm)) ||
             this.currentIndicatorState === "gray"
         );
+    }
+
+    onOrderClick(orderVm) {
+        this.onOrderSelected(orderVm);
+        this.initSelectedOrder(orderVm);
+    }
+
+    initSelectedOrder(orderVm) {
+        this.orderCustomerNameSection.innerHTML = orderVm.customerVm.firstName + " " + orderVm.customerVm.lastName;
+
+        const tbody = this.orderCustomerTable.querySelector('tbody');
+        tbody.innerHTML = '';
+
+        orderVm.productOrderVms.forEach(function (productOrderVm) {
+            const row = document.createElement('tr');
+
+            const name = document.createElement('td');
+            const cost = document.createElement('td');
+            const quantity = document.createElement('td');
+            const total = document.createElement('td');
+            name.textContent = productOrderVm.productName;
+            cost.textContent = productOrderVm.productCost + " €";
+            quantity.textContent = productOrderVm.quantity;
+            total.textContent = productOrderVm.cost + " €";
+            name.classList.add('firstCol');
+
+            row.appendChild(name);
+            row.appendChild(cost);
+            row.appendChild(quantity);
+            row.appendChild(total);
+
+            tbody.appendChild(row);
+        });
+
+        this.orderCustomerTotalCost.innerHTML = orderVm.cost + " €";
     }
 }

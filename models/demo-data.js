@@ -36,9 +36,9 @@ class DemoData {
 
     get orderDtos() {
         const productOrderDtos = [];
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[0], 4));
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[4], 2));
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[6], 3));
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[0].id, this.productDtos[0].name, this.productDtos[0].cost, 4));
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[4].id, this.productDtos[4].name, this.productDtos[4].cost, 2));
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[6].id, this.productDtos[6].name, this.productDtos[6].cost, 3));
         return [new OrderDto("1", this.customerDtos[7], productOrderDtos, false, "none")];
     }
 

@@ -11,14 +11,20 @@ clientService.setAppData(demoData.appDataDto);
 pageManager.onLoadFileRequested = () => fileManager.selectFile();
 pageManager.onSaveFileRequested = () => clientService.onSaveAppDataRequested();
 
-fileManager.onAppDataReady = (appData) => clientService.setAppData(appData);
+fileManager.onAppDataReady = (appData) => setAppData(appData);
 clientService.saveAppData = (appData) => fileManager.writeToFile(appData);
+orderManager.onOrderSelected = (orderVm) => pageManager.showOrderPage();
 
 document.addEventListener("DOMContentLoaded", () => {
     pageManager.initMenuEvents();
     fileManager.init();
     updateData();
 });
+
+function setAppData(appData){
+    clientService.setAppData(appData)
+    pageManager.showOrdersPage();
+}
 
 function updateData() {
     productManager.init()
