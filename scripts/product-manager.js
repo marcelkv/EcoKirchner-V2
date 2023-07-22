@@ -3,6 +3,22 @@ class ProductManager {
         return document.querySelector(".products > ." + this.classList.listItems);
     }
 
+    get indicatorFilter() {
+        return document.querySelector(".products > .products-bar > ." + this.classList.listItemIndicator);
+    }
+
+    get currentIndicatorState() {
+        if (this.indicatorFilter.classList.contains(this.classList.indicatorGreen)) {
+            return "green";
+        }
+        else if (this.indicatorFilter.classList.contains(this.classList.indicatorRed)) {
+            return "red";
+        }
+        else {
+            return "gray";
+        }
+    }
+
     constructor(clientService) {
         this.clientService = clientService;
         this.classList = new ListItems();
@@ -13,8 +29,40 @@ class ProductManager {
             return;
         }
 
+        this.initFilterIndicator();
+        this.initProductsList();
+    }
+
+    initFilterIndicator() {
+        this.indicatorFilter.classList.add(this.classList.indicatorGreen);
+        this.indicatorFilter.onclick = () => this.toggleFilterIndicator();
+    }
+
+    toggleFilterIndicator() {
+        if (this.currentIndicatorState === "green") {
+            this.indicatorFilter.classList.remove(this.classList.indicatorGreen);
+            this.indicatorFilter.classList.add(this.classList.indicatorRed);
+        }
+        else if (this.currentIndicatorState === "red") {
+            this.indicatorFilter.classList.remove(this.classList.indicatorRed);
+            this.indicatorFilter.classList.add(this.classList.indicatorGray);
+        }
+        else {
+            this.indicatorFilter.classList.remove(this.classList.indicatorGray);
+            this.indicatorFilter.classList.add(this.classList.indicatorGreen);
+        }
+        this.initProductsList();
+    }
+
+    initProductsList() {
         this.productsList.innerHTML = "";
         this.clientService.productVms.forEach((product) => {
+
+            if ((this.currentIndicatorState === "green" && product.availableItems === 0) ||
+                (this.currentIndicatorState === "red" && product.availableItems > 0)) {
+                return;
+            }
+
             const listItemWrapper = document.createElement("div");
             const primaryItems = document.createElement("div");
             const secondaryItems = document.createElement("div");
@@ -42,7 +90,7 @@ class ProductManager {
             listItemWrapper.className = this.classList.listItemWrapper;
             primaryItems.className = this.classList.primaryItems;
             secondaryItems.className = this.classList.secondaryItems;
-            indicatorItem.classList.add(this.classList.primariyItemIndicator);
+            indicatorItem.classList.add(this.classList.listItemIndicator);
             if (product.availableItems > 0) {
                 indicatorItem.classList.add(this.classList.indicatorGreen);
             }
