@@ -192,5 +192,14 @@ class OrderManager {
         });
 
         this.orderCustomerTotalCost.innerHTML = orderVm.cost + " €";
+        const bankVm = orderVm.bankVm;
+        const iban = document.getElementsByClassName('iban')[0];
+        iban.innerHTML = bankVm.iban;
+        const bic = document.getElementsByClassName('bic')[0];
+        bic.innerHTML = bankVm.bic;
+        const email = document.getElementsByClassName('email')[0];
+        email.innerHTML = bankVm.email;
+        const phone = document.getElementsByClassName('phone')[0];
+        phone.innerHTML = bankVm.phone;
     }
 }

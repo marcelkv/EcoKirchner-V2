@@ -3,7 +3,8 @@ class ClientService {
         const customerDtos = this.customerVms.map(customerVm => this.getCustomerDto(customerVm));
         const productDtos = this.productVms.map(productVm => this.getProductDto(productVm));
         const orderDtos = this.orderVms.map(orderVm => this.getOrderDto(orderVm));
-        return new AppDataDto(productDtos, customerDtos, orderDtos);
+        const bankDtos = new BankDto(this.bankVm.iban, this.bankVm.bic, this.bankVm.email, this.bankVm.phone);
+        return new AppDataDto(productDtos, customerDtos, orderDtos, bankDtos);
     }
 
     constructor() {
@@ -14,7 +15,8 @@ class ClientService {
     setAppData(appData) {
         this.productVms = appData.productDtos.map(productDto => this.getProductVm(productDto, appData.orderDtos));
         this.customerVms = appData.customerDtos.map(customerDto => this.getCustomerVm(customerDto));
-        this.orderVms = appData.orderDtos.map(orderDto => this.getOrderVm(orderDto));
+        this.bankVm = new BankVm(appData.bankDto.iban, appData.bankDto.bic, appData.bankDto.email, appData.bankDto.phone);
+        this.orderVms = appData.orderDtos.map(orderDto => this.getOrderVm(orderDto, this.bankVm));
         this.updateData();
     }
 
@@ -44,10 +46,10 @@ class ClientService {
         return new CustomerVm(customerDto.id, customerDto.firstName, customerDto.lastName);
     }
 
-    getOrderVm(orderDto) {
+    getOrderVm(orderDto, bankVm) {
         const productOrderVms = orderDto.productOrderDtos.map(productOrderDto => this.getProductOrderVm(productOrderDto));
         const customerVm = this.getCustomerVm(orderDto.customerDto);
-        return new OrderVm(orderDto.id, customerVm, productOrderVms, orderDto.delivered, orderDto.paymentMethod)
+        return new OrderVm(orderDto.id, customerVm, productOrderVms, orderDto.delivered, orderDto.paymentMethod, bankVm)
     }
 
     getProductOrderVm(productOrderDto) {

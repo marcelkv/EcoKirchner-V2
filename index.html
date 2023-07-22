@@ -12,12 +12,14 @@
     <link rel="stylesheet" type="text/css" href="styles/prodcuts.css">
     <link rel="stylesheet" type="text/css" href="styles/orders.css">
     <script src="common/helpers.js"></script>
+    <script src="models/bank-dto.js"></script>
     <script src="models/product-order-dto.js"></script>
     <script src="models/order-dto.js"></script>
     <script src="models/product-dto.js"></script>
     <script src="models/customer-dto.js"></script>
     <script src="models/app-data-dto.js"></script>
     <script src="models/demo-data.js"></script>
+    <script src="view-models/bank-vm.js"></script>
     <script src="view-models/order-vm.js"></script>
     <script src="view-models/product-order-vm.js"></script>
     <script src="view-models/customer-vm.js"></script>
@@ -104,8 +106,26 @@
                         </table>
 
                         <div class="group total">
-                            <p class="group-label">Gesamt:</p>
-                            <p class="group-item"></p>
+                            <div class="group-label">Gesamt:</div>
+                            <div class="group-item"></div>
+                        </div>
+                    </div>
+                    <div class="section payment">
+                        <div class="group">
+                            <div class="group-label">IBAN: </div>
+                            <div class="group-item iban"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">BIC: </div>
+                            <div class="group-item bic"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">Email:</div>
+                            <div class="group-item email"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">Telefon: </div>
+                            <div class="group-item phone"></div>
                         </div>
                     </div>
                 </div>

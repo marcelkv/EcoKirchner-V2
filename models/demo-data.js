@@ -42,7 +42,15 @@ class DemoData {
         return [new OrderDto("1", this.customerDtos[7], productOrderDtos, false, "none")];
     }
 
+    get bankDto() {
+        return new BankDto(
+            "DE72 7601 2285 0019 4378 55",
+            "PBNFGEFF",
+            "kirchner@kartoffel.com",
+            "+49 1611 4728162");
+    }
+
     get appDataDto() {
-        return new AppDataDto(this.productDtos, this.customerDtos, this.orderDtos);
+        return new AppDataDto(this.productDtos, this.customerDtos, this.orderDtos, this.bankDto);
     }
 }

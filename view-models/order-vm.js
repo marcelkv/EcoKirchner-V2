@@ -1,10 +1,11 @@
 class OrderVm {
-    constructor(id, customerVm, productOrderVms, delivered, paymentMethod) {
+    constructor(id, customerVm, productOrderVms, delivered, paymentMethod, bankVm) {
         this.id = id;
         this.customerVm = customerVm;
         this.productOrderVms = productOrderVms;
         this.delivered = delivered;
         this.paymentMethod = paymentMethod;
+        this.bankVm = bankVm;
     }
 
     get cost() {

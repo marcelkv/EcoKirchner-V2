@@ -12,7 +12,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 50px;
-    max-width: 550px;
+    max-width: 650px;
 }
 
 .order-customer-name-section {
@@ -41,7 +41,9 @@
     margin-right: 8px;
 }
 
-.group-item {}
+.group.total {
+    margin-top: 25px;
+}
 
 .products-table {
     width: 100%;
@@ -83,4 +85,14 @@ tr:nth-child(odd) {
 
 .firstCol {
     padding-right: 20px;
+}
+
+.section.payment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    border: 1px solid black;
+    margin: 2px;
+    padding: 5px;
 }
