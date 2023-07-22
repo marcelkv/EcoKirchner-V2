@@ -36,10 +36,10 @@ class DemoData {
 
     get orderDtos() {
         const productOrderDtos = [];
-        productOrderDtos.push(new ProductOrderDto("1", "1", 4));
-        productOrderDtos.push(new ProductOrderDto("2", "4", 2));
-        productOrderDtos.push(new ProductOrderDto("3", "7", 3));
-        return [new OrderDto("1", "6", productOrderDtos, false)];
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[0], 4));
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[4], 2));
+        productOrderDtos.push(new ProductOrderDto(this.productDtos[6], 3));
+        return [new OrderDto("1", this.customerDtos[7], productOrderDtos, false, "none")];
     }
 
     get appDataDto() {

@@ -1,6 +1,6 @@
 class ProductOrderDto {
-    constructor(productId, quantity) {
-        this.productId = productId;
+    constructor(productDto, quantity) {
+        this.productDto = productDto;
         this.quantity = quantity;
     }
 }

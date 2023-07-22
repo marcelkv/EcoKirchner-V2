@@ -9,7 +9,7 @@ class ClientService {
         );
 
         const orderDtos = this.orderVms.map(orderVm =>
-            new OrderDto(orderVm.id, orderVm.customerId, orderVm.productOrders, orderVm.delivered, orderVm.paymentMethod)
+            new OrderDto(orderVm.id, orderVm.customer, orderVm.productOrders, orderVm.delivered, orderVm.paymentMethod)
         );
 
         return new AppDataDto(productDtos, customerDtos, orderDtos);
@@ -30,7 +30,7 @@ class ClientService {
         );
 
         const orderVms = appData.orderDtos.map(orderDto =>
-            new OrderVm(orderDto.id, orderDto.customerId, orderDto.productOrders, orderDto.delivered, orderDto.paymentMethod)
+            new OrderVm(orderDto.id, orderDto.customer, orderDto.productOrders, orderDto.delivered, orderDto.paymentMethod)
         );
 
         this.productVms = productVms;
