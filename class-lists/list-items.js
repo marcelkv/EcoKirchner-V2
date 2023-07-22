@@ -6,6 +6,8 @@ class ListItems {
     primaryItem = "primary-item";
     listItemIndicator = "list-item-indicator";
     indicatorRed = "indicator-red";
+    indicatorYellow = "indicator-yellow";
+    indicatorOrange = "indicator-orange";
     indicatorGreen = "indicator-green";
     indicatorGray = "indicator-gray";
     secondaryItemLabel = "secondary-item-label";

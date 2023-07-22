@@ -57,6 +57,14 @@
     background-color: green;
 }
 
+.indicator-yellow {
+    background-color: yellow;
+}
+
+.indicator-orange {
+    background-color: orange;
+}
+
 .indicator-gray {
     background-color: gray;
 }

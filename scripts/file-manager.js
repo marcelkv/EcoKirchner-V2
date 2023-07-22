@@ -36,6 +36,8 @@ class FileManager {
         };
 
         reader.readAsText(file);
+
+        this.fileInput.value = "";
     }
 
     writeToFile(appData) {
