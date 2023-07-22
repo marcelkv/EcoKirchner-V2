@@ -47,6 +47,7 @@
     height: var(--indicator-size);
     margin-left: 10px;
     border-radius: var(--indicator-size);
+    cursor: pointer;
 }
 
 .indicator-red {

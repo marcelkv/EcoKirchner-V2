@@ -34,6 +34,9 @@ class ProductManager {
     }
 
     initFilterIndicator() {
+        this.indicatorFilter.classList.remove(this.classList.indicatorRed);
+        this.indicatorFilter.classList.remove(this.classList.indicatorGray);
+        this.indicatorFilter.classList.add(this.classList.listItemIndicator);
         this.indicatorFilter.classList.add(this.classList.indicatorGreen);
         this.indicatorFilter.onclick = () => this.toggleFilterIndicator();
     }
@@ -57,7 +60,6 @@ class ProductManager {
     initProductsList() {
         this.productsList.innerHTML = "";
         this.clientService.productVms.forEach((product) => {
-
             if ((this.currentIndicatorState === "green" && product.availableItems === 0) ||
                 (this.currentIndicatorState === "red" && product.availableItems > 0)) {
                 return;
