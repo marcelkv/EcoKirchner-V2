@@ -1,3 +1,7 @@
+:root {
+    --indicator-size: 16px;
+}
+
 .list-items {
     display: flex;
     flex-direction: column;
@@ -22,6 +26,12 @@
 
 .primary-items {
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.primary-items.clickable {
+    cursor: pointer;
 }
 
 .secondary-items {
@@ -34,6 +44,55 @@
 
 .secondary-items.open {
     display: flex;
+}
+
+.list-item-indicator {
+    min-width: var(--indicator-size);
+    min-height: var(--indicator-size);
+    max-width: var(--indicator-size);
+    max-height: var(--indicator-size);
+    margin-left: 10px;
+    border-radius: var(--indicator-size);
+    border: 1px solid black;
+}
+
+.list-item-message {
+    width: 100%;
+    height: 100%;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.indicator-red {
+    border: 1px solid red;
+    background-color: red;
+}
+
+.indicator-green {
+    border: 1px solid green;
+    background-color: green;
+}
+
+.indicator-yellow {
+    border: 1px solid violet;
+    background-color: violet;
+}
+
+.indicator-orange {
+    border: 1px solid orange;
+    background-color: orange;
+}
+
+.indicator-gray {
+    border: 1px solid gray;
+    background-color: gray;
+}
+
+.indicator-none {
+    background-color: white;
+    border: 1px solid black;
 }
 
 .primary-item {

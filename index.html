@@ -9,20 +9,26 @@
     <link rel="icon" href="images/cropped-icon-32x32.png">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/list-items.css">
+    <link rel="stylesheet" type="text/css" href="styles/prodcuts.css">
+    <link rel="stylesheet" type="text/css" href="styles/orders.css">
+    <script src="common/helpers.js"></script>
+    <script src="models/bank-dto.js"></script>
     <script src="models/product-order-dto.js"></script>
     <script src="models/order-dto.js"></script>
     <script src="models/product-dto.js"></script>
     <script src="models/customer-dto.js"></script>
     <script src="models/app-data-dto.js"></script>
     <script src="models/demo-data.js"></script>
+    <script src="view-models/bank-vm.js"></script>
     <script src="view-models/order-vm.js"></script>
+    <script src="view-models/product-order-vm.js"></script>
     <script src="view-models/customer-vm.js"></script>
     <script src="view-models/product-vm.js"></script>
     <script src="class-lists/list-items.js"></script>
-    <script src="common/helpers.js"></script>
     <script src="scripts/file-manager.js"></script>
     <script src="scripts/client-service.js"></script>
     <script src="scripts/customer-manager.js"></script>
+    <script src="scripts/order-manager.js"></script>
     <script src="scripts/product-manager.js"></script>
     <script src="scripts/page-manager.js"></script>
     <script src="scripts/main.js"></script>
@@ -46,35 +52,100 @@
                 <div class="header-menu-button-line"></div>
             </div>
             <div class="header-menu-large">
-                <div class="menu-item">Products</div>
-                <div class="menu-item">Customers</div>
-                <div class="menu-item">Orders</div>
-                <div class="menu-item">Load file</div>
-                <div class="menu-item">Save file</div>
+                <div class="menu-item">Produkte</div>
+                <div class="menu-item">Kunden</div>
+                <div class="menu-item">Bestellungen</div>
+                <div class="menu-item">Speichern</div>
+                <div class="menu-item">Daten importieren</div>
             </div>
         </div>
         <div class="menu">
-            <div class="menu-item clickable">Products</div>
-            <div class="menu-item clickable">Customers</div>
-            <div class="menu-item clickable">Orders</div>
+            <div class="menu-item clickable">Produkte</div>
+            <div class="menu-item clickable">Kunden</div>
+            <div class="menu-item clickable">Bestellungen</div>
             <div class="menu-item-separator"></div>
-            <div class="menu-item clickable">Save File</div>
+            <div class="menu-item clickable">Speichern</div>
             <div class="menu-item-separator"></div>
-            <div class="menu-item clickable">Load File</div>
+            <div class="menu-item clickable">Daten importieren</div>
             <div class="menu-item-separator"></div>
         </div>
         <div class="body">
             <div class="page main">Hi!</div>
             <div class="page products hidden">
+                <div class="products-bar">
+                    <div class="list-item-indicator"></div>
+                    <div class="list-item-message"></div>
+                </div>
                 <div class="list-items"></div>
             </div>
-            <div class="page product hidden">One product</div>
+            <div class="page product hidden"></div>
             <div class="page customers hidden">
                 <div class="list-items"></div>
             </div>
-            <div class="page customer hidden">One customer</div>
-            <div class="page orders hidden">The orders</div>
-            <div class="page order hidden">One order</div>
+            <div class="page customer hidden"></div>
+            <div class="page orders hidden">
+                <div class="orders-bar">
+                    <div class="list-item-indicator"></div>
+                    <div class="list-item-message"></div>
+                </div>
+                <div class="list-items"></div>
+            </div>
+            <div class="page order hidden">
+                <div class="order-wrapper">
+                    <div class="order-customer-name-section"></div>
+                    <div class="order-customer-products">
+                        <table class="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Produkt</th>
+                                    <th>Preis</th>
+                                    <th>Anzahl</th>
+                                    <th>Gesamt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <div class="group total">
+                            <div class="group-label">Gesamt:</div>
+                            <div class="group-item"></div>
+                        </div>
+                    </div>
+                    <div class="section payment">
+                        <div class="group">
+                            <div class="group-label">IBAN: </div>
+                            <div class="group-item iban"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">BIC: </div>
+                            <div class="group-item bic"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">Email:</div>
+                            <div class="group-item email"></div>
+                        </div>
+                        <div class="group">
+                            <div class="group-label">Telefon: </div>
+                            <div class="group-item phone"></div>
+                        </div>
+                    </div>
+                    <div class="order-options">
+                        <div class="order-option">
+                            <div class="list-item-indicator"></div>
+                            <div class="checkbox-label">Hat Bar bezahlt</div>
+                        </div>
+                        <div class="order-option">
+                            <div class="list-item-indicator"></div>
+                            <div class="checkbox-label">Hat überwiesen</div>
+                        </div>
+                        <div class="order-option">
+                            <div class="list-item-indicator"></div>
+                            <div class="checkbox-label">Geliefert</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <p>© Eco Kirchner 2023</p>

@@ -1,8 +1,8 @@
 class OrderDto {
-    constructor(id, customer, productOrders, delivered, paymentMethod) {
+    constructor(id, customerDto, productOrderDtos, delivered, paymentMethod) {
         this.id = id;
-        this.customer = customer;
-        this.productOrders = productOrders;
+        this.customerDto = customerDto;
+        this.productOrderDtos = productOrderDtos;
         this.delivered = delivered;
         this.paymentMethod = paymentMethod;
     }
