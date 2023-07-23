@@ -152,8 +152,8 @@ class ProductManager {
         const integerValue = parseInt(userInput);
         if (!isNaN(integerValue) & integerValue > 0) {
             const appDataDto = this.clientService.appDataDto;
-            const productDto = this.clientService.getProductDto(productVm);
             productVm.totalItems = integerValue;
+            const productDto = this.clientService.getProductDto(productVm);
             productVm.availableItems = this.clientService.getAvailableProducts(productDto, appDataDto.orderDtos);
             this.init();
         }
