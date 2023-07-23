@@ -71,9 +71,9 @@ class ProductManager {
 
     initProductsList() {
         this.productsList.innerHTML = "";
-        this.clientService.productVms.forEach((product) => {
-            if ((this.currentIndicatorState === "green" && product.availableItems === 0) ||
-                (this.currentIndicatorState === "red" && product.availableItems > 0)) {
+        this.clientService.productVms.forEach((productVm) => {
+            if ((this.currentIndicatorState === "green" && productVm.availableItems === 0) ||
+                (this.currentIndicatorState === "red" && productVm.availableItems > 0)) {
                 return;
             }
 
@@ -105,7 +105,7 @@ class ProductManager {
             primaryItems.className = this.classList.primaryItems;
             secondaryItems.className = this.classList.secondaryItems;
             indicatorItem.classList.add(this.classList.listItemIndicator);
-            if (product.availableItems > 0) {
+            if (productVm.availableItems > 0) {
                 indicatorItem.classList.add(this.classList.indicatorGreen);
             }
             else {
@@ -118,15 +118,16 @@ class ProductManager {
             quantityItem.className = this.classList.secondaryItem;
             availableItemLabel.className = this.classList.secondaryItemLabel;
             availableItem.className = this.classList.secondaryItem;
-            nameItem.textContent = product.name;
+            nameItem.textContent = productVm.name;
             costItemLabel.textContent = "Cost:";
-            costItem.textContent = product.cost + " €";
+            costItem.textContent = productVm.cost + " €";
             quantityItemLabel.textContent = "Total:"
-            quantityItem.textContent = product.totalItems;
+            quantityItem.textContent = productVm.totalItems;
             availableItemLabel.textContent = "Available:";
-            availableItem.textContent = product.availableItems;
+            availableItem.textContent = productVm.availableItems;
 
             primaryItems.onclick = () => this.onPrimaryItemClick(secondaryItems);
+            quantityItem.onclick = () => this.onQuantityClick(productVm);
         });
     }
 
@@ -144,5 +145,14 @@ class ProductManager {
         const queryClassName = this.classList.dot(this.classList.secondaryItems);
         const allSecondaryitems = this.productsList.querySelectorAll(queryClassName);
         allSecondaryitems.forEach(item => item.classList.remove(this.classList.open));
+    }
+
+    onQuantityClick(productVm) {
+        const userInput = window.prompt("Total number items for " + productVm.name + ": ", productVm.totalItems);
+        const integerValue = parseInt(userInput);
+        if (!isNaN(integerValue) & integerValue > 0) {
+            productVm.totalItems = integerValue;
+            this.init();
+        }
     }
 }
