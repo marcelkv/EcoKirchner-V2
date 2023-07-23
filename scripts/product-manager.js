@@ -151,7 +151,10 @@ class ProductManager {
         const userInput = window.prompt("Total number items for " + productVm.name + ": ", productVm.totalItems);
         const integerValue = parseInt(userInput);
         if (!isNaN(integerValue) & integerValue > 0) {
+            const appDataDto = this.clientService.appDataDto;
+            const productDto = this.clientService.getProductDto(productVm);
             productVm.totalItems = integerValue;
+            productVm.availableItems = this.clientService.getAvailableProducts(productDto, appDataDto.orderDtos);
             this.init();
         }
     }
