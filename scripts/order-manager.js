@@ -9,10 +9,23 @@ class OrderManager {
 
 
     get orderCustomerProducts() {
-        return document.querySelector(".order > .order-wrapper > .order-customer-products");
+        return document.querySelector(".order > .order-wrapper");
     }
+
     get orderCustomerTable() {
         return this.orderCustomerProducts.querySelector(".products-table");
+    }
+
+    get orderCustomerPayedCashIndicator() {
+        return this.orderCustomerProducts.querySelector(".list-item-indicator");
+    }
+
+    get orderCustomerPayedTransactionIndicator() {
+        return this.orderCustomerProducts.querySelectorAll(".list-item-indicator")[1];
+    }
+
+    get orderCustomerDeliveredIndicator() {
+        return this.orderCustomerProducts.querySelectorAll(".list-item-indicator")[2];
     }
 
     get orderCustomerTotalCost() {
@@ -45,6 +58,7 @@ class OrderManager {
         this.clientService = clientService;
         this.classList = new ListItems();
         this.onOrderSelected = null;
+        this.onDeliveredChanged = null;
     }
 
     init() {
@@ -201,5 +215,78 @@ class OrderManager {
         email.innerHTML = bankVm.email;
         const phone = document.getElementsByClassName('phone')[0];
         phone.innerHTML = bankVm.phone;
+
+        if (orderVm.delivered) {
+            this.orderCustomerDeliveredIndicator.classList.add(this.classList.indicatorGray);
+        }
+        else {
+            this.orderCustomerDeliveredIndicator.classList.add(this.classList.indicatorNone);
+        }
+
+        if (orderVm.paymentMethod === "none") {
+            this.orderCustomerPayedCashIndicator.classList.add(this.classList.indicatorNone);
+            this.orderCustomerPayedTransactionIndicator.classList.add(this.classList.indicatorNone);
+        }
+        else if (orderVm.paymentMethod === "cash") {
+            this.orderCustomerPayedCashIndicator.classList.add(this.classList.indicatorGray);
+        }
+        else {
+            this.orderCustomerPayedTransactionIndicator.classList.add(this.classList.indicatorGray);
+        }
+
+        this.orderCustomerPayedCashIndicator.onclick = () => this.togglePayedCash(orderVm);
+        this.orderCustomerPayedTransactionIndicator.onclick = () => this.togglePayedTransaction(orderVm);
+        this.orderCustomerDeliveredIndicator.onclick = () => this.toggleDelivered(orderVm);
+    }
+
+    togglePayedCash(orderVm) {
+        if (orderVm.paymentMethod === "cash") {
+            this.orderCustomerPayedCashIndicator.classList.remove(this.classList.indicatorGray);
+            this.orderCustomerPayedCashIndicator.classList.add(this.classList.indicatorNone);
+            orderVm.paymentMethod = "none";
+        }
+
+        else {
+            this.orderCustomerPayedCashIndicator.classList.add(this.classList.indicatorGray);
+            this.orderCustomerPayedCashIndicator.classList.remove(this.classList.indicatorNone);
+            this.orderCustomerPayedTransactionIndicator.classList.remove(this.classList.indicatorGray);
+            this.orderCustomerPayedTransactionIndicator.classList.add(this.classList.indicatorNone);
+            orderVm.paymentMethod = "cash";
+        }
+        this.init();
+    }
+
+    togglePayedTransaction(orderVm) {
+        if (orderVm.paymentMethod === "transaction") {
+            this.orderCustomerPayedTransactionIndicator.classList.remove(this.classList.indicatorGray);
+            this.orderCustomerPayedTransactionIndicator.classList.add(this.classList.indicatorNone);
+            orderVm.paymentMethod = "none";
+        }
+
+        else {
+            this.orderCustomerPayedTransactionIndicator.classList.add(this.classList.indicatorGray);
+            this.orderCustomerPayedTransactionIndicator.classList.remove(this.classList.indicatorNone);
+            this.orderCustomerPayedCashIndicator.classList.remove(this.classList.indicatorGray);
+            this.orderCustomerPayedCashIndicator.classList.add(this.classList.indicatorNone);
+            orderVm.paymentMethod = "transaction";
+        }
+        this.init();
+    }
+
+    toggleDelivered(orderVm) {
+        if (this.orderCustomerDeliveredIndicator.classList.contains(this.classList.indicatorGray)) {
+            this.orderCustomerDeliveredIndicator.classList.remove(this.classList.indicatorGray);
+            this.orderCustomerDeliveredIndicator.classList.add(this.classList.indicatorNone);
+            orderVm.delivered = false;
+        }
+        else {
+            this.orderCustomerDeliveredIndicator.classList.add(this.classList.indicatorGray);
+            this.orderCustomerDeliveredIndicator.classList.remove(this.classList.indicatorNone);
+            orderVm.delivered = true;
+        }
+
+        orderVm.updateProductsTotalItems(this.clientService.productVms);
+        this.onDeliveredChanged();
+        this.init();
     }
 }

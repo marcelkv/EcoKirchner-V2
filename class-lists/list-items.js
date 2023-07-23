@@ -10,6 +10,7 @@ class ListItems {
     indicatorOrange = "indicator-orange";
     indicatorGreen = "indicator-green";
     indicatorGray = "indicator-gray";
+    indicatorNone = "indicator-none";
     secondaryItemLabel = "secondary-item-label";
     secondaryItem = "secondary-item";
     open = "open";

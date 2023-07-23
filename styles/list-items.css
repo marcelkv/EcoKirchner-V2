@@ -47,27 +47,37 @@
     height: var(--indicator-size);
     margin-left: 10px;
     border-radius: var(--indicator-size);
-    cursor: pointer;
+    border: 1px solid black;
 }
 
 .indicator-red {
+    border: 1px solid red;
     background-color: red;
 }
 
 .indicator-green {
+    border: 1px solid green;
     background-color: green;
 }
 
 .indicator-yellow {
-    background-color: yellow;
+    border: 1px solid violet;
+    background-color: violet;
 }
 
 .indicator-orange {
+    border: 1px solid orange;
     background-color: orange;
 }
 
 .indicator-gray {
+    border: 1px solid gray;
     background-color: gray;
+}
+
+.indicator-none {
+    background-color: white;
+    border: 1px solid black;
 }
 
 .primary-item {

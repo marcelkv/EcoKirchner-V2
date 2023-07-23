@@ -13,7 +13,8 @@ pageManager.onSaveFileRequested = () => clientService.onSaveAppDataRequested();
 
 fileManager.onAppDataReady = (appData) => setAppData(appData);
 clientService.saveAppData = (appData) => fileManager.writeToFile(appData);
-orderManager.onOrderSelected = (orderVm) => pageManager.showOrderPage();
+orderManager.onOrderSelected = () => pageManager.showOrderPage();
+orderManager.onDeliveredChanged = () => productManager.init();
 
 document.addEventListener("DOMContentLoaded", () => {
     pageManager.initMenuEvents();
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateData();
 });
 
-function setAppData(appData){
+function setAppData(appData) {
     clientService.setAppData(appData)
     pageManager.showOrdersPage();
 }

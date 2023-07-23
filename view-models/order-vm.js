@@ -19,4 +19,18 @@ class OrderVm {
         }
         return roundToTwoDecimals(total);
     }
+
+    updateProductsTotalItems(productVms) {
+        this.productOrderVms.map(productOrderVm => {
+            const foundProductVm = productVms.find(productVm => productVm.id === productOrderVm.productId);
+            if (foundProductVm) {
+                if (this.delivered) {
+                    foundProductVm.totalItems -= productOrderVm.quantity;
+                }
+                else {
+                    foundProductVm.totalItems += productOrderVm.quantity;
+                }
+            }
+        });
+    }
 }

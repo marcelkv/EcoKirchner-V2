@@ -96,3 +96,18 @@ tr:nth-child(odd) {
     margin: 2px;
     padding: 5px;
 }
+
+.order-options {
+    margin-top: 30px;
+    display: flex;
+}
+
+.order-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox-label {
+    margin: 0 12px 0 6px;
+}
