@@ -35,11 +35,22 @@ class DemoData {
     }
 
     get orderDtos() {
-        const productOrderDtos = [];
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[0].id, this.productDtos[0].name, this.productDtos[0].cost, 4));
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[4].id, this.productDtos[4].name, this.productDtos[4].cost, 2));
-        productOrderDtos.push(new ProductOrderDto(this.productDtos[6].id, this.productDtos[6].name, this.productDtos[6].cost, 3));
-        return [new OrderDto("1", this.customerDtos[7], productOrderDtos, false, "none")];
+        const productOrderDtos1 = [];
+        productOrderDtos1.push(new ProductOrderDto(this.productDtos[0].id, this.productDtos[0].name, this.productDtos[0].cost, 4));
+        productOrderDtos1.push(new ProductOrderDto(this.productDtos[4].id, this.productDtos[4].name, this.productDtos[4].cost, 2));
+        productOrderDtos1.push(new ProductOrderDto(this.productDtos[6].id, this.productDtos[6].name, this.productDtos[6].cost, 3));
+        const order1 = new OrderDto("1", this.customerDtos[7], productOrderDtos1, false, "none");
+
+        const productOrderDtos2 = [];
+        productOrderDtos2.push(new ProductOrderDto(this.productDtos[3].id, this.productDtos[4].name, this.productDtos[3].cost, 58));
+        productOrderDtos2.push(new ProductOrderDto(this.productDtos[7].id, this.productDtos[7].name, this.productDtos[7].cost, 66));
+        const order2 = new OrderDto("1", this.customerDtos[13], productOrderDtos2, true, "none");
+
+        const productOrderDtos3 = [];
+        productOrderDtos3.push(new ProductOrderDto(this.productDtos[1].id, this.productDtos[1].name, this.productDtos[1].cost, 68));
+        const order3 = new OrderDto("1", this.customerDtos[8], productOrderDtos3, true, "cash");
+
+        return [order1, order2, order3]
     }
 
     get bankDto() {
