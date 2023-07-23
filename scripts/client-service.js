@@ -84,7 +84,7 @@ class ClientService {
             new ProductOrderDto(
                 productOrderVm.productId,
                 productOrderVm.productName,
-                productOrderVm.cost,
+                productOrderVm.productCost,
                 productOrderVm.quantity)
         );
     }
