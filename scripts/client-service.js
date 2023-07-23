@@ -24,11 +24,16 @@ class ClientService {
         this.saveAppData(this.appDataDto);
     }
 
-    getAvailableProducts(productDto, orderDtos,) {
+    getAvailableProducts(productDto, orderDtos) {
         let availableItems = productDto.totalItems;
-
         orderDtos.map(orderDto => {
-            const foundProductOrder = orderDto.productOrderDtos.find(productOrderDto => productOrderDto.productId === productDto.id);
+            if (orderDto.delivered) {
+                return;
+            }
+
+            const foundProductOrder = orderDto.productOrderDtos.find(productOrderDto =>
+                productOrderDto.productId === productDto.id
+            );
             if (foundProductOrder) {
                 availableItems -= foundProductOrder.quantity;
             }
