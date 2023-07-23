@@ -232,6 +232,13 @@ class OrderManager {
         const phone = document.getElementsByClassName('phone')[0];
         phone.innerHTML = bankVm.phone;
 
+        this.orderCustomerDeliveredIndicator.classList.remove(this.classList.indicatorNone);
+        this.orderCustomerDeliveredIndicator.classList.remove(this.classList.indicatorGray);
+        this.orderCustomerPayedCashIndicator.classList.remove(this.classList.indicatorNone);
+        this.orderCustomerPayedCashIndicator.classList.remove(this.classList.indicatorGray);
+        this.orderCustomerPayedTransactionIndicator.classList.remove(this.classList.indicatorNone);
+        this.orderCustomerPayedTransactionIndicator.classList.remove(this.classList.indicatorGray);
+
         if (orderVm.delivered) {
             this.orderCustomerDeliveredIndicator.classList.add(this.classList.indicatorGray);
         }
