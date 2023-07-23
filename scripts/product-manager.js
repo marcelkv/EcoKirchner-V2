@@ -3,8 +3,16 @@ class ProductManager {
         return document.querySelector(".products > ." + this.classList.listItems);
     }
 
+    get productsBar() {
+        return document.querySelector(".products > .products-bar");
+    }
+
     get indicatorFilter() {
         return document.querySelector(".products > .products-bar > ." + this.classList.listItemIndicator);
+    }
+
+    get indicatorMessage() {
+        return document.querySelector(".products > .products-bar > ." + this.classList.listItemMessage);
     }
 
     get currentIndicatorState() {
@@ -38,21 +46,25 @@ class ProductManager {
         this.indicatorFilter.classList.remove(this.classList.indicatorGray);
         this.indicatorFilter.classList.add(this.classList.listItemIndicator);
         this.indicatorFilter.classList.add(this.classList.indicatorGreen);
-        this.indicatorFilter.onclick = () => this.toggleFilterIndicator();
+        this.indicatorMessage.textContent = "Haben wir";
+        this.productsBar.onclick = () => this.toggleFilterIndicator();
     }
 
     toggleFilterIndicator() {
         if (this.currentIndicatorState === "green") {
             this.indicatorFilter.classList.remove(this.classList.indicatorGreen);
             this.indicatorFilter.classList.add(this.classList.indicatorRed);
+            this.indicatorMessage.textContent = "Haben wir nicht";
         }
         else if (this.currentIndicatorState === "red") {
             this.indicatorFilter.classList.remove(this.classList.indicatorRed);
             this.indicatorFilter.classList.add(this.classList.indicatorGray);
+            this.indicatorMessage.textContent = "Alle Produke";
         }
         else {
             this.indicatorFilter.classList.remove(this.classList.indicatorGray);
             this.indicatorFilter.classList.add(this.classList.indicatorGreen);
+            this.indicatorMessage.textContent = "Haben wir";
         }
         this.initProductsList();
     }

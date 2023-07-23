@@ -3,10 +3,13 @@ class OrderManager {
         return document.querySelector(".orders > ." + this.classList.listItems);
     }
 
+    get ordersBar() {
+        return document.querySelector(".orders > .orders-bar");
+    }
+
     get orderCustomerNameSection() {
         return document.querySelector(".order > .order-wrapper > .order-customer-name-section");
     }
-
 
     get orderCustomerProducts() {
         return document.querySelector(".order > .order-wrapper");
@@ -34,6 +37,11 @@ class OrderManager {
 
     get indicatorFilter() {
         return document.querySelector(".orders > .orders-bar > ." + this.classList.listItemIndicator);
+    }
+
+
+    get indicatorMessage() {
+        return document.querySelector(".orders > .orders-bar > ." + this.classList.listItemMessage);
     }
 
     get currentIndicatorState() {
@@ -77,29 +85,36 @@ class OrderManager {
         this.indicatorFilter.classList.remove(this.classList.indicatorOrange);
         this.indicatorFilter.classList.add(this.classList.listItemIndicator);
         this.indicatorFilter.classList.add(this.classList.indicatorRed);
-        this.indicatorFilter.onclick = () => this.toggleFilterIndicator();
+        this.indicatorMessage.textContent = "Nicht Bezahlt und Nicht Geliefert";
+        this.ordersBar.onclick = () => this.toggleFilterIndicator();
     }
 
     toggleFilterIndicator() {
         if (this.currentIndicatorState === "green") {
             this.indicatorFilter.classList.remove(this.classList.indicatorGreen);
             this.indicatorFilter.classList.add(this.classList.indicatorRed);
+            this.indicatorMessage.textContent = "Nicht Bezahlt und Nicht Geliefert";
         }
         else if (this.currentIndicatorState === "red") {
             this.indicatorFilter.classList.remove(this.classList.indicatorRed);
             this.indicatorFilter.classList.add(this.classList.indicatorOrange);
+            this.indicatorMessage.textContent = "Geliefert aber Nicht Bezahlt";
+
         }
         else if (this.currentIndicatorState === "orange") {
             this.indicatorFilter.classList.remove(this.classList.indicatorOrange);
             this.indicatorFilter.classList.add(this.classList.indicatorYellow);
+            this.indicatorMessage.textContent = "Bezahlt aber Nicht Geliefert";
         }
         else if (this.currentIndicatorState === "yellow") {
             this.indicatorFilter.classList.remove(this.classList.indicatorYellow);
             this.indicatorFilter.classList.add(this.classList.indicatorGray);
+            this.indicatorMessage.textContent = "Alle Bestellungen";
         }
         else {
             this.indicatorFilter.classList.remove(this.classList.indicatorGray);
             this.indicatorFilter.classList.add(this.classList.indicatorGreen);
+            this.indicatorMessage.textContent = "Bezahlt und Geliefert";
         }
         this.initOrdersList();
     }
@@ -136,7 +151,8 @@ class OrderManager {
             }
 
             listItemWrapper.className = this.classList.listItemWrapper;
-            primaryItems.className = this.classList.primaryItems;
+            primaryItems.classList.add(this.classList.primaryItems);
+            primaryItems.classList.add(this.classList.clickable);
             nameItem.className = this.classList.primaryItem;
             nameItem.textContent = orderVm.customerVm.firstName + " " + orderVm.customerVm.lastName;
 

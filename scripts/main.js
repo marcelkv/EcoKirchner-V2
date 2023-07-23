@@ -19,6 +19,7 @@ orderManager.onDeliveredChanged = () => productManager.init();
 document.addEventListener("DOMContentLoaded", () => {
     pageManager.initMenuEvents();
     fileManager.init();
+    pageManager.showProductsPage();
     updateData();
 });
 

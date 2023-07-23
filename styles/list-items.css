@@ -30,6 +30,10 @@
     align-items: center;
 }
 
+.primary-items.clickable {
+    cursor: pointer;
+}
+
 .secondary-items {
     display: none;
     width: 100%;
@@ -43,11 +47,22 @@
 }
 
 .list-item-indicator {
-    width: var(--indicator-size);
-    height: var(--indicator-size);
+    min-width: var(--indicator-size);
+    min-height: var(--indicator-size);
+    max-width: var(--indicator-size);
+    max-height: var(--indicator-size);
     margin-left: 10px;
     border-radius: var(--indicator-size);
     border: 1px solid black;
+}
+
+.list-item-message {
+    width: 100%;
+    height: 100%;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
 }
 
 .indicator-red {

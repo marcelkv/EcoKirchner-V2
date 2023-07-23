@@ -3,8 +3,10 @@ class ListItems {
     listItemWrapper = "list-item-wrapper";
     primaryItems = "primary-items";
     secondaryItems = "secondary-items";
+    clickable = "clickable";
     primaryItem = "primary-item";
     listItemIndicator = "list-item-indicator";
+    listItemMessage = "list-item-message";
     indicatorRed = "indicator-red";
     indicatorYellow = "indicator-yellow";
     indicatorOrange = "indicator-orange";
