@@ -13,4 +13,12 @@ class ResProducts {
     static requestItemCostText(productVm) {
         return "Preis für " + productVm.name + ": " + productVm.costAsString;
     }
+
+    static requestNameText(productVm) {
+        return "Name für " + productVm.name;
+    }
+
+    static requestAvailableItemsText() {
+        return "Die Reserve wird automatisch berechnet.";
+    }
 }
