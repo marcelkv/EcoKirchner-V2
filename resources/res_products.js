@@ -7,6 +7,10 @@ class ResProducts {
     static availableText = "Reserve:";
 
     static requestTotalNumberOfItemsText(productVm) {
-        return "Gesamt Anzahl für " + productVm.name + ": ", productVm.totalItems;
+        return "Gesamt Anzahl für " + productVm.name + ": " + productVm.totalItems;
+    }
+
+    static requestItemCostText(productVm) {
+        return "Preis für " + productVm.name + ": " + productVm.costAsString;
     }
 }

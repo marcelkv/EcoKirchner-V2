@@ -83,7 +83,7 @@ class ProductsView {
             primaryItems[0].innerHTML = productVm.name;
         }
         if (secondaryItems) {
-            secondaryItems[0].innerHTML = productVm.cost;
+            secondaryItems[0].innerHTML = productVm.costAsString;
             secondaryItems[1].innerHTML = productVm.totalItems;
             secondaryItems[2].innerHTML = productVm.availableItems;
         }
@@ -228,6 +228,7 @@ class ProductsView {
             availableItem.textContent = productVm.availableItems;
 
             primaryItems.onclick = () => this.#onPrimaryItemClick(secondaryItems);
+            costItem.onclick = () => this.#onCostItemClick(productVm);
             quantityItem.onclick = () => this.#onQuantityClick(productVm);
         });
     }
@@ -253,6 +254,18 @@ class ProductsView {
         const queryClassName = ListItems.dot(ListItems.secondaryItems);
         const allSecondaryitems = this.#productsList.querySelectorAll(queryClassName);
         allSecondaryitems.forEach(item => item.classList.remove(ListItems.open));
+    }
+
+    #onCostItemClick(productVm) {
+        const userInput = window.prompt(ResProducts.requestItemCostText(productVm));
+        if (!userInput) {
+            return;
+        }
+        const floatValue = parseFloat(userInput.replace(",", "."));
+        if (!isNaN(floatValue) & floatValue > 0) {
+            productVm.cost = roundToTwoDecimals(floatValue);
+            this.onUpdateProductVm(productVm);
+        }
     }
 
     #onQuantityClick(productVm) {

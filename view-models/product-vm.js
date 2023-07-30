@@ -6,7 +6,10 @@ class ProductVm {
     }
 
     get costAsString() {
-        return this.cost + " €";
+        const paddedNumber = padNumberWithDecimalPlaces(this.cost, 2);
+        if (paddedNumber) {
+            return paddedNumber.replace(".", ",") + " €";
+        }
     }
 
     constructor(id, name, cost, totalItems, availableItems) {
