@@ -1,32 +1,50 @@
 class ClientService {
-    get appDataDto() {
-        const customerDtos = this.customerVms.map(customerVm => this.getCustomerDto(customerVm));
-        const productDtos = this.productVms.map(productVm => this.getProductDto(productVm));
-        const orderDtos = this.orderVms.map(orderVm => this.getOrderDto(orderVm));
-        const bankDtos = new BankDto(this.bankVm.iban, this.bankVm.bic, this.bankVm.email, this.bankVm.phone);
-        return new AppDataDto(productDtos, customerDtos, orderDtos, bankDtos);
-    }
+    #appData;
 
     constructor() {
         this.saveAppData = null;
-        this.updateData = null;
+        this.appDataReady = null;
     }
 
     setAppData(appData) {
-        this.productVms = appData.productDtos.map(productDto => this.getProductVm(productDto, appData.orderDtos));
-        this.customerVms = appData.customerDtos.map(customerDto => this.getCustomerVm(customerDto));
-        this.bankVm = new BankVm(appData.bankDto.iban, appData.bankDto.bic, appData.bankDto.email, appData.bankDto.phone);
-        this.orderVms = appData.orderDtos.map(orderDto => this.getOrderVm(orderDto, this.bankVm));
-        this.updateData();
+        this.#appData = appData;
+        this.appDataReady();
     }
 
     onSaveAppDataRequested() {
-        this.saveAppData(this.appDataDto);
+        this.saveAppData(this.#appData);
     }
 
-    getAvailableProducts(productDto, orderDtos) {
+    getBankVm() {
+        const appData = this.#appData;
+        return new BankVm(appData.bankDto.iban, appData.bankDto.bic, appData.bankDto.email, appData.bankDto.phone);
+    }
+
+    getOrderVms() {
+        return this.#appData.orderDtos.map(orderDto => this.#getOrderVm(orderDto, this.getBankVm()));
+    }
+
+    getProductVms() {
+        return this.#appData.productDtos.map(productDto => this.#getProductVm(productDto, this.getOrderVms()));
+    }
+
+    getCustomerVms() {
+        return this.#appData.customerDtos.map(customerDto => this.#getCustomerVm(customerDto));
+    }
+
+    updateProductVm(productVm) {
+        const foundProductDto = this.#appData.productDtos.find(productDto => productDto.id === productVm.id);
+        if (foundProductDto) {
+            foundProductDto.totalItems = productVm.totalItems;
+            foundProductDto.name = productVm.name;
+            foundProductDto.cost = productVm.cost;
+            return this.#getProductVm(foundProductDto);
+        }
+    }
+
+    #getAvailableProducts(productDto) {
         let availableItems = productDto.totalItems;
-        orderDtos.map(orderDto => {
+        this.#appData.orderDtos.map(orderDto => {
             if (orderDto.delivered) {
                 return;
             }
@@ -42,18 +60,18 @@ class ClientService {
         return availableItems;
     }
 
-    getProductVm(productDto, orderDtos) {
-        const availableItems = this.getAvailableProducts(productDto, orderDtos);
+    #getProductVm(productDto) {
+        const availableItems = this.#getAvailableProducts(productDto);
         return new ProductVm(productDto.id, productDto.name, productDto.cost, productDto.totalItems, availableItems);
     }
 
-    getCustomerVm(customerDto) {
+    #getCustomerVm(customerDto) {
         return new CustomerVm(customerDto.id, customerDto.firstName, customerDto.lastName);
     }
 
-    getOrderVm(orderDto, bankVm) {
+    #getOrderVm(orderDto, bankVm) {
         const productOrderVms = orderDto.productOrderDtos.map(productOrderDto => this.getProductOrderVm(productOrderDto));
-        const customerVm = this.getCustomerVm(orderDto.customerDto);
+        const customerVm = this.#getCustomerVm(orderDto.customerDto);
         return new OrderVm(orderDto.id, customerVm, productOrderVms, orderDto.delivered, orderDto.paymentMethod, bankVm)
     }
 

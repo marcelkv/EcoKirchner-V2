@@ -77,6 +77,7 @@ class PageManager {
         this.largeMenuItems.forEach((menuItem, index) => {
             menuItem.addEventListener("click", () => this.onMenuItemClick(index))
         })
+
         this.menuEventsInitialized = true;
     }
 

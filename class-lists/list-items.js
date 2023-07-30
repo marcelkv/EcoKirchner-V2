@@ -1,23 +1,23 @@
 class ListItems {
-    listItems = "list-items"
-    listItemWrapper = "list-item-wrapper";
-    primaryItems = "primary-items";
-    secondaryItems = "secondary-items";
-    clickable = "clickable";
-    primaryItem = "primary-item";
-    listItemIndicator = "list-item-indicator";
-    listItemMessage = "list-item-message";
-    indicatorRed = "indicator-red";
-    indicatorYellow = "indicator-yellow";
-    indicatorOrange = "indicator-orange";
-    indicatorGreen = "indicator-green";
-    indicatorGray = "indicator-gray";
-    indicatorNone = "indicator-none";
-    secondaryItemLabel = "secondary-item-label";
-    secondaryItem = "secondary-item";
-    open = "open";
+    static listItems = "list-items"
+    static listItemWrapper = "list-item-wrapper";
+    static primaryItems = "primary-items";
+    static secondaryItems = "secondary-items";
+    static clickable = "clickable";
+    static primaryItem = "primary-item";
+    static listItemIndicator = "list-item-indicator";
+    static listItemMessage = "list-item-message";
+    static indicatorRed = "indicator-red";
+    static indicatorYellow = "indicator-yellow";
+    static indicatorOrange = "indicator-orange";
+    static indicatorGreen = "indicator-green";
+    static indicatorGray = "indicator-gray";
+    static indicatorNone = "indicator-none";
+    static secondaryItemLabel = "secondary-item-label";
+    static secondaryItem = "secondary-item";
+    static open = "open";
 
-    dot(item) {
+    static dot(item) {
         return "." + item;
     }
 }

@@ -1,5 +1,5 @@
 class FileManager {
-    get fileInput() {
+    get #fileInput() {
         return document.querySelector(".file-selector");
     }
 
@@ -8,14 +8,24 @@ class FileManager {
     }
 
     init() {
-        this.fileInput.onchange = (event) => this.handleSelectedFile(event);
+        this.#fileInput.onchange = (event) => this.#handleSelectedFile(event);
     }
 
     selectFile() {
-        this.fileInput.click();
+        this.#fileInput.click();
     }
 
-    handleSelectedFile(event) {
+    writeToFile(appData) {
+        const fileName = this.#getDateTimeString() + " - " + encodeURIComponent("MyAppData.json");
+        const dataBlob = new Blob([JSON.stringify(appData)], { type: 'application/json' });
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(dataBlob);
+        downloadLink.download = fileName;
+        downloadLink.click();
+        URL.revokeObjectURL(downloadLink.href);
+    }
+
+    #handleSelectedFile(event) {
         const file = event.target.files[0];
 
         if (!file) {
@@ -37,20 +47,10 @@ class FileManager {
 
         reader.readAsText(file);
 
-        this.fileInput.value = "";
+        this.#fileInput.value = "";
     }
 
-    writeToFile(appData) {
-        const fileName = this.getDateTimeString() + " - " + encodeURIComponent("MyAppData.json");
-        const dataBlob = new Blob([JSON.stringify(appData)], { type: 'application/json' });
-        const downloadLink = document.createElement('a');
-        downloadLink.href = URL.createObjectURL(dataBlob);
-        downloadLink.download = fileName;
-        downloadLink.click();
-        URL.revokeObjectURL(downloadLink.href);
-    }
-
-    getDateTimeString() {
+    #getDateTimeString() {
         const now = new Date();
 
         const year = now.getFullYear();
