@@ -4,7 +4,9 @@ class App {
     fileManager = new FileManager();
     clientService = new ClientService();
     productsView = new ProductsView();
+    customersView = new CustomersView();
     productsController = new ProductsController(this.productsView, this.clientService);
+    customersController = new CustomersController(this.customersView, this.clientService);
 
     constructor() {
         this.pageManager.initMenuEvents();
@@ -19,6 +21,7 @@ class App {
 
     #onAppDataReady() {
         this.productsController.initProducts();
+        this.customersController.initCustomers();
     }
 
     setAppData(appDataDto) {
