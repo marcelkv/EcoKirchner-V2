@@ -35,7 +35,7 @@ class ProductsView {
 
     setProducts(productVms) {
         this.#productVms = productVms;
-        this.#initFilterIndicator();
+        this.#init();
     }
 
     updateProduct(newProductVm) {
@@ -114,7 +114,7 @@ class ProductsView {
         return this.#productsList.querySelectorAll(ListItems.dot(ListItems.listItemWrapper))[index];
     }
 
-    #initFilterIndicator() {
+    #init() {
         this.#setGreen();
         this.#productsBar.onclick = () => this.#toggleFilterIndicator();
     }
@@ -134,7 +134,7 @@ class ProductsView {
     #setGreen(productId) {
         this.#clearAllColors();
         this.#indicatorFilter.classList.add(ListItems.indicatorGreen);
-        this.#indicatorMessage.textContent = ResProducts.redText;
+        this.#indicatorMessage.textContent = ResProducts.greenText;
         const greenProducts = this.#getGreenProductVms();
         this.#initProductsList(greenProducts, productId);
     }
@@ -149,7 +149,7 @@ class ProductsView {
 
     #setGray(productId) {
         this.#clearAllColors();
-        this.#indicatorFilter.classList.add(ListItems.indicatorRed);
+        this.#indicatorFilter.classList.add(ListItems.indicatorGray);
         this.#indicatorMessage.textContent = ResProducts.grayText;
         const allProducts = this.#productVms;
         this.#initProductsList(allProducts, productId);
@@ -174,7 +174,7 @@ class ProductsView {
     }
 
     #isProductRed(productVm) {
-        return productVm.availableItems === 0;
+        return productVm.availableItems <= 0;
     }
 
     #initProductsList(productVms, productId) {
@@ -228,10 +228,10 @@ class ProductsView {
             availableItem.textContent = productVm.availableItems;
 
             primaryItems.onclick = () => this.#onPrimaryItemClick(secondaryItems);
-            nameItem.onclick = () => this.#onNameClick(productVm);
+            nameItem.ondblclick = () => this.#onNameDoubleClick(productVm);
             costItem.onclick = () => this.#onCostItemClick(productVm);
             quantityItem.onclick = () => this.#onQuantityClick(productVm);
-            availableItem.onclick = () => this.#onAvailableCLick();
+            availableItem.onclick = () => this.#onAvailableClick();
         });
     }
 
@@ -258,7 +258,7 @@ class ProductsView {
         allSecondaryitems.forEach(item => item.classList.remove(ListItems.open));
     }
 
-    #onNameClick(productVm) {
+    #onNameDoubleClick(productVm) {
         const userInput = window.prompt(ResProducts.requestNameText(productVm));
         if (!userInput || userInput.length < 3) {
             return;
@@ -273,6 +273,7 @@ class ProductsView {
         if (!userInput) {
             return;
         }
+
         const floatValue = parseFloat(userInput.replace(",", "."));
         if (!isNaN(floatValue) & floatValue > 0) {
             productVm.cost = roundToTwoDecimals(floatValue);
@@ -289,7 +290,7 @@ class ProductsView {
         }
     }
 
-    #onAvailableCLick(){
+    #onAvailableClick() {
         window.alert(ResProducts.requestAvailableItemsText());
     }
 }
