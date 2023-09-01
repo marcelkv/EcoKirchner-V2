@@ -116,7 +116,9 @@ class ProductsView {
 
     #init() {
         this.#setGreen();
-        this.#productsBar.onclick = () => this.#toggleFilterIndicator();
+        if (!this.#productsBar.onclick) {
+            this.#productsBar.onclick = () => this.#toggleFilterIndicator();
+        }
     }
 
     #toggleFilterIndicator() {
