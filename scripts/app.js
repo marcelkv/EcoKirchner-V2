@@ -6,9 +6,11 @@ class App {
     productsView = new ProductsView();
     customersView = new CustomersView();
     ordersView = new OrdersView();
+    orderView = new OrderView();
     productsController = new ProductsController(this.productsView, this.clientService);
     customersController = new CustomersController(this.customersView, this.clientService);
     ordersController = new OrdersController(this.ordersView, this.clientService);
+    orderController = new OrderController(this.orderView);
 
     constructor() {
         this.pageManager.initMenuEvents();
@@ -19,7 +21,7 @@ class App {
         this.clientService.appDataReady = () => this.#onAppDataReady();
         this.clientService.saveAppData = (appDataDto) => this.fileManager.writeToFile(appDataDto);
         this.clientService.setAppData(this.demoData.appDataDto);
-        this.ordersView.onOrderSelected = (orderVm => this.#onOrderSelected(orderVm));
+        this.ordersController.onOrderSelected = (orderVm => this.#onOrderSelected(orderVm));
     }
 
     #onAppDataReady() {
@@ -34,5 +36,6 @@ class App {
 
     #onOrderSelected(orderVm) {
         this.pageManager.showOrderPage();
+        this.orderController.setOrder(orderVm);
     }
 }
